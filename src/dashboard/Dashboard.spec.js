@@ -7,10 +7,15 @@ import Controls from '../controls/Controls';
 
 
 
-
 test('Should render dashboard component correctly', () => {
     render(<DashBoard />)
 });
+
+test('Should render display and controls correctly', () => {
+    render(<Display />)
+    render(<Controls/>)
+});
+
 
 test('Default state is open and unlocked', () => {
     const { getByText } = render(<DashBoard />)
