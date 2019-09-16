@@ -10,3 +10,12 @@ test('Should render dashboard component correctly', () => {
     render(<DashBoard />)
 });
 
+test('Default state is open and unlocked', () => {
+    const { getByText } = render(<DashBoard />)
+    expect(getByText(/open/i))
+    expect(getByText(/unlocked/i))
+})
+
+
+
+
