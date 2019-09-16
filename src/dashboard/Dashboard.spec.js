@@ -48,4 +48,42 @@ test('Cannot be closed or opened if it is locked', () => {
         expect(toggleClosed).not.toHaveBeenCalled()
     }
 
-})
+});
+
+test('buttons text changes to reflect the state the door will be in if clicked', async () => {
+    const component = render(<DashBoard />);
+
+    let button = component.getByText('Close Gate');
+    fireEvent.click(button);
+
+    button = await component.getByText('Open Gate');
+    expect(button);
+});
+
+
+
+test('Disabled working as intended', () => {
+    const { getByText } = render(<DashBoard/>);
+
+    let closeButton = getByText('Close Gate');
+    let lockButton = getByText('Lock Gate');
+    
+    fireEvent.click(closeButton);
+    fireEvent.click(lockButton);
+
+
+    expect(closeButton.disabled)
+    expect(lockButton.disabled)
+
+    fireEvent.click(closeButton);
+    fireEvent.click(lockButton);                //Checkin button disabled status when clicking on and off
+
+    expect(closeButton.disabled).toBe(false)
+    expect(lockButton.disabled).toBe(false)
+
+    // button = await component.getByText('Open Gate');
+    // expect(button);
+});
+
+
+
